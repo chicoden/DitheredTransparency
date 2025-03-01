@@ -1,0 +1,2 @@
+# Experimenting with Dithered Transparency
+Attempting to implement dithered transparency. Originally done in SHADERed but now working on an improved version that can handle nonconvex geometry in python. The idea is to discard fragments according to a dithering pattern with density varying with transparency. Different layers of fragments also need to have different offsets to the dithering pattern to allow surfaces with the same transparency to occlude more where they overlap.
