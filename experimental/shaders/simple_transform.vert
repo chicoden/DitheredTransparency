@@ -1,7 +1,7 @@
 #version 460
 precision highp float;
 
-uniform mat4 cameraMatrix;
+uniform mat4 projViewMatrix;
 uniform mat4 normalMatrix;
 uniform mat4 modelMatrix;
 
@@ -19,5 +19,5 @@ void main() {
     vsOut.position = (modelMatrix * vec4(position, 1.0)).xyz;
     vsOut.uv = uv;
     vsOut.normal = (normalMatrix * vec4(normal, 0.0)).xyz;
-    gl_Position = cameraMatrix * vec4(vsOut.position, 1.0);
+    gl_Position = projViewMatrix * vec4(vsOut.position, 1.0);
 }

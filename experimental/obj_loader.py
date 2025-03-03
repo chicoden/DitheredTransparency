@@ -37,7 +37,7 @@ def load_mtl(path, root):
                 continue
 
             if chunks[0] == "newmtl":
-                cur_mtl = {"Ka": None, "Kd": None, "Ks": None, "Ns": None, "map_Ka": None, "map_Kd": None, "map_Ks": None, "map_Ns": None}
+                cur_mtl = {}
                 materials[chunks[1]] = cur_mtl
 
             elif chunks[0] in ("Ka", "Kd", "Ks"):
