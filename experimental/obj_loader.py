@@ -1,6 +1,5 @@
 from PIL import Image
 import numpy as np
-import os
 
 def compute_normal(a, b, c):
     px, py, pz = (bx - ax for bx, ax in zip(b, a))
@@ -47,7 +46,7 @@ def load_mtl(path, root):
                 cur_mtl[chunks[0]] = float(chunks[1])
 
             elif chunks[0] in ("map_Ka", "map_Kd", "map_Ks", "map_Ns"):
-                cur_mtl[chunks[0]] = Image.open(os.path.join(root, chunks[1]))
+                cur_mtl[chunks[0]] = Image.open(root + chunks[1])
 
         return materials
 
@@ -65,8 +64,8 @@ def load_obj(path):
                 continue
 
             if chunks[0] == "mtllib":
-                root = path.rsplit(os.sep, maxsplit=1)[0]
-                materials = load_mtl(os.path.join(root, chunks[1]), root)
+                root = path.replace("\\", "/").rsplit("/", maxsplit=1)[0] + "/"
+                materials = load_mtl(root + chunks[1], root)
 
             elif chunks[0] == "usemtl":
                 faces_by_mtl[-1][2] = len(faces)
